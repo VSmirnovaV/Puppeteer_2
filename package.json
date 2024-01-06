@@ -1,0 +1,19 @@
+{
+  "name": "puppeteer",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "puppeteer"
+  ],
+  "author": "Smirnova Viktoria",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^29.7.0",
+    "jest-puppeteer": "^9.0.2",
+    "puppeteer": "^21.7.0"
+  }
+}
