@@ -13,14 +13,10 @@
   "author": "Smirnova Viktoria",
   "license": "ISC",
   "dependencies": {
-    "chai": "^5.0.0",
+    "chai": "^4.0.0",
     "cucumber": "^6.0.7",
     "jest": "^29.7.0",
     "jest-puppeteer": "^9.0.2",
-    "puppeteer": "^21.7.0"
-  },
-  "devDependencies": {
-    "@cucumber/cucumber": "^10.2.1",
-    "@types/cucumber": "^7.0.0"
+    "puppeteer": "^13.7.0"
   }
 }

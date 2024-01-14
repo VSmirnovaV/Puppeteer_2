@@ -1,3 +1,5 @@
+const {clickElement, getText} = require("./lib/commands.js");
+
 let page;
 
 beforeEach(async () => {
@@ -12,30 +14,28 @@ afterEach(() => {
 describe("booking ticket tests", () => {
 
     test("successful booking ticket 'Zveropolis'", async () => {
-        await page.click('body > nav > a:nth-child(3)');
-        await page.waitForSelector('h1');
-        await page.click('body > main > section:nth-child(1) > div.movie-seances__hall > ul > li > a');
-        await page.click('body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(3) > span:nth-child(4)');
-      await page.click('body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(6) > span:nth-child(7)');
-        await page.click('button');
-        const actual = await page.$eval("button", link => link.textContent);
+        await clickElement(page, 'body > nav > a:nth-child(3)');
+        await clickElement(page, 'body > main > section:nth-child(2) > div:nth-child(2) > ul > li:nth-child(1) > a');
+        await clickElement(page, 'body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(3) > span:nth-child(4)');
+        await clickElement(page, 'body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(6) > span:nth-child(7)');
+        await clickElement(page, 'button');
+        const actual = await getText(page, 'button');
         await expect(actual).toEqual('Получить код бронирования');
     }, 60000);
 
     test("successful booking ticket 'Unesennyye vetrom'", async () => {
-      await page.click('body > nav > a:nth-child(5)');
-      await page.waitForSelector('h1');
-      await page.click('body > main > section:nth-child(2) > div.movie-seances__hall > ul > li > a');
-      await page.click('body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(3) > span:nth-child(4)');
-      await page.click('body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(6) > span:nth-child(7)');
-      await page.click('button');
-      const actual = await page.$eval("button", link => link.textContent);
+      await clickElement(page, 'body > nav > a:nth-child(5)');
+      await clickElement(page, 'body > main > section:nth-child(3) > div:nth-child(2) > ul > li > a');
+      await clickElement(page, 'body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(3) > span:nth-child(4)');
+      await clickElement(page, 'body > main > section > div.buying-scheme > div.buying-scheme__wrapper > div:nth-child(6) > span:nth-child(7)');
+      await clickElement(page, 'button');
+      const actual = await getText(page, 'button');
       await expect(actual).toEqual('Получить код бронирования');
   }, 60000);
 
   test("unsuccessful booking ticket 'Zveropolis', don't choose a place", async () => {
-    await page.click('body > nav > a:nth-child(2)');
-    await page.click('body > main > section:nth-child(1) > div.movie-seances__hall > ul > li > a');
+    await clickElement(page, 'body > nav > a:nth-child(3)');
+    await clickElement(page, 'body > main > section:nth-child(2) > div:nth-child(2) > ul > li:nth-child(1) > a');
     const actual = await page.$eval("button", link => link.getAttribute('disabled'));
     const expected = "true";
     await expect(actual).toEqual(expected);
